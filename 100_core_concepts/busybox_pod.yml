@@ -1,0 +1,14 @@
+# busy box pod have functionalities like wget, curl..
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-sleep
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    resources: {}
+    args:
+    - sleep
+    - "1000000"
