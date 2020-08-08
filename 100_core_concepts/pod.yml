@@ -1,0 +1,21 @@
+# Method-1
+# kubectl run nginx --image=nginx --generator=run-pod/v1 --dry-run -o yaml 
+# depricated using generator
+
+# Method-2
+# kubectl run --image=nginx nginx --restart=Never --dry-run -o yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx
+  name: nginx
+  namespace: mynamespace
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    resources: {}
+  restartPolicy: Never
+   
