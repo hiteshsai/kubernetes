@@ -5,4 +5,3 @@
 - [Creation of pod](pod.yml)
 
 - [Usage of resource quota for pods](resourcequota.yml)
-

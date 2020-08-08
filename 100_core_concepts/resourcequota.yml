@@ -43,4 +43,4 @@ spec:
         memory: "10Gi"
         cpu: "500m"
   priorityClassName: high
-  
+ 
