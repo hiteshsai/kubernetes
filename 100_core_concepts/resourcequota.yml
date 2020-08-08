@@ -1,10 +1,46 @@
+# kubectl create quota myrq --hard=cpu=1,memory=1G,pods=2 --dry-run -o yaml
+
 apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: myrq
 spec:
   hard:
-    cpu: "1"
-    memory: 1G
+    cpu: "1000"
+    memory: 200Gi
     pods: "2"
-status: {}
+  scopeSelector:
+    matchExpressions:
+    - operator : In
+      scopeName: PriorityClass
+      values: ["high"]
+
+
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high
+value: 1000000
+globalDefault: false
+description: "This priority class should be used for XYZ service pods only."
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: high-priority
+spec:
+  containers:
+  - name: high-priority
+    image: ubuntu
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do echo hello; sleep 10;done"]
+    resources:
+      requests:
+        memory: "10Gi"
+        cpu: "500m"
+      limits:
+        memory: "10Gi"
+        cpu: "500m"
+  priorityClassName: high
+  
