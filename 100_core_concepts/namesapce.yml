@@ -1,0 +1,10 @@
+# Creating a namespace
+
+# kubectl create ns mynamespace --dry-run -o yml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mynamespace
+
+# kubectl create -f namespace.yml
