@@ -2,4 +2,5 @@ FROM openjdk:7
 COPY . /var/www/java  
 WORKDIR /var/www/java  
 RUN javac Add.java  
-CMD ["java", "Add"]  
+ENTRYPOINT ["java", "Add"]
+CMD [ "5", "10"  ]
